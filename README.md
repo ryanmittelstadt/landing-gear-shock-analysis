@@ -1,7 +1,3 @@
-<h1>Design and Sensitivity Analysis of an Aircraft Landing Gear Shock Absorber</h1>
-
- ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
-
 <h2>Description</h2>
 This project presents a parametric and sensitivity analysis of aircraft landing gear and structural vibration dynamics using MATLAB simulations. Landing impact dynamics are modeled to investigate the influence of stiffness and damping on settling time and maximum displacement. Wing vibration amplification due to engine imbalance is also analyzed over varying operating conditions. The work demonstrates design-oriented approaches to aerospace vibration and dynamics problems.
 <br />
