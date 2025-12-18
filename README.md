@@ -14,7 +14,7 @@ This project presents a parametric and sensitivity analysis of aircraft landing 
 
 <h2>Program walk-through:</h2>
 
-<p align="center">
+<p align="left">
 I wanted to explore how engineers balance competing priorities—such as minimizing weight while maximizing structural stiffness—to solve real-world aerospace problems. The following analysis addresses two distinct dynamic systems critical to aircraft performance and safety:
 
 * Problem 1: Landing Gear Design Optimization: The objective is to design a shock absorber for a home-built aircraft to minimize the settling time—the time it takes for oscillations to cease after the initial impact of landing. This is critical for preventing structural damage and ensuring pilot safety.
@@ -32,34 +32,69 @@ The system is modeled as a single degree-of-freedom (SDOF) mass-spring-damper sy
 $$\large m\ddot{x} + c\dot{x} + kx = 0$$
 
 </div>
+To perform numerical simulations, I converted the system into a first-order state-space representation for MATLAB’s ode45 solver:
 
-<img src="https://i.imgur.com/LDYVjzP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+* **State Variables:** $y_1 = x$ (Displacement) and $y_2 = \dot{x}$ (Velocity).
+* **Derivatives:** $\dot{y}_1 = y_2$ and $\dot{y}_2 = -\frac{c}{m}y_2 - \frac{k}{m}y_1$.
+
 <br />
+</div>
+<div align="center">
+<img src="https://i.imgur.com/LDYVjzP.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+  </div>
 <br />
-The governing second-order equation of motion is converted into a first-order system and solved numerically using MATLAB’s ode45 solver. The system is initialized with a vertical landing velocity representative of touchdown conditions. Each simulation produces time histories of displacement, velocity, and force transmitted through the landing gear. <br/>
-<img src="https://i.imgur.com/QYUx3bz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<p><strong>Sensitivity Analysis & Parameter Sweeping</strong></p>
+
+A comprehensive iterative sweep was performed using nested loops in MATLAB to identify the optimal spring stiffness ($k$) and damping ratio ($\zeta$).
 <br />
- A comprehensive sensitivity analysis is performed by sweeping spring stiffness and damping ratio values across a broad design space. For each parameter combination, the system response is simulated and evaluated using automated post-processing. Settling time is calculated using a ±5% displacement criterion relative to peak response. The results are visualized as a surface plot, allowing rapid identification of trends and regions of improved performance.
+
+* **Sweep Ranges:** $k \in [1000, 10000]\text{ N/m}$ and $\zeta \in [0.1, 1.0]$.
+* **Settling Time Criteria:** Defined as the time required for the displacement to stay within a $\pm5\%$ tolerance band of the peak displacement.
+<p align="center">
+<img src="https://i.imgur.com/QYUx3bz.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+  </p>
+<p><strong>Design Constraints and Selection</strong></p>
+ While higher stiffness naturally reduces settling time (approaching a solid block at infinity), it drastically increases maximum force. A force analysis was conducted to ensure structural integrity.
 <br />
  <br />
-<img src="https://i.imgur.com/wIqZxB7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<p align="center">
+<img src="https://i.imgur.com/wIqZxB7.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+</p>
 <br />
- <br />
- While increasing spring stiffness generally reduces settling time, excessively stiff systems result in unrealistic displacement behavior and unacceptably high impact forces. To avoid non-physical designs, maximum displacement constraints are introduced based on typical small-aircraft landing gear behavior. These constraints limit the parameter space to physically reasonable solutions.
-<br/>
+Research into small aircraft gear suggested a minimum displacement of 0.09 m to avoid a "crash-like" landing. Balancing these factors, the optimal design parameters were selected:
+
+* **Optimal Stiffness ($k$):** $10,000\text{ N/m}$
+* **Optimal Damping Ratio ($\zeta$):** $0.7061$
+* **Final Settling Time:** $1.34\text{ seconds}$
+<p align="center">
+<img src="https://i.imgur.com/vGQH8XZ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+   <br />
+<img src="https://i.imgur.com/XV0QQAV.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Moj2C3n.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+</p>
+  <h3>Problem 2. Jet Liner Wing Vibration Analysis:</h3>
+This section analyzes the structural requirements for a passenger jet wing (empty mass 3,700 kg) subjected to a turbofan engine imbalance of 2.5 grams at a 75 cm.
+<p><strong>Part A: Stiffness Requirement for Takeoff</strong></p>
+
+The goal was to determine the wing's equivalent stiffness ($K_{eq}$) such that the amplification ratio ($A = X/\delta_{st}$) remains below $0.05$ as engine speed ramps from $0$ to $3,100\text{ RPM}$. With a full fuel load of $8,500\text{ kg}$, the total mass ($m$) is $12,200\text{ kg}$.
 <br />
-<img src="https://i.imgur.com/vGQH8XZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+The amplification ratio was calculated using the formula:
+$$A = \frac{m\omega^2 a}{\sqrt{(k - m\omega^2)^2 + (\omega c)^2}}$$
+
+Through a MATLAB parameter sweep, it was found that the amplification ratio increases with $\omega$. The minimum compliant stiffness was determined to be $2.0606 \times 10^{10}\text{ N/m}$.
+<p align="center">
+<img src="https://i.imgur.com/RTBdreW.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/IXXG9W2.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+  </p>
+<p><strong>Parts B & C: Landing Scenario and Worst-Case Analysis</strong></p>
+The system was re-evaluated for a landing scenario where 90% of the fuel was consumed and the engine was at 2,200 RPM. 
 <br />
-<br />
-To further understand system behavior, displacement responses are generated for a range of damping ratios while holding spring stiffness constant. This analysis highlights the trade-off between underdamped oscillations and overdamped slow response, showing that moderate damping provides the fastest practical settling.  <br/>
- <br />
-<img src="https://i.imgur.com/XV0QQAV.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+Using the stiffness found in Part A, amplification ratios were calculated for damping ratios from 0 to 1:
+
+* **Worst-case Amplification Ratio:** 0.00054977
+* **Occurring at Damping Ratio ($\zeta$):** 0
+<p align="center">
+<img src="https://i.imgur.com/gDZ5yYV.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+</p>
 </p>
