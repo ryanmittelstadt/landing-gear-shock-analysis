@@ -16,23 +16,29 @@ This project presents a parametric and sensitivity analysis of aircraft landing 
 
 <p align="center">
 This project applies dynamic modeling and numerical simulation to analyze and design aerospace mechanical systems using MATLAB. Two primary problems are addressed: optimizing the shock absorption performance of an aircraft landing gear system during touchdown, and evaluating vibration amplification in an aircraft wing caused by engine imbalance. Both analyses are approached as design problems with no single correct solution, emphasizing sensitivity analysis and engineering trade-offs. <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+ <br />
+The aircraft landing gear is modeled as an equivalent single-degree-of-freedom mass–spring–damper system. While real landing gear assemblies are mechanically complex, parallel shock absorbers allow the system to be reduced to a single effective stiffness and damping coefficient for vertical dynamics. This simplified model captures the dominant behavior during landing while remaining computationally efficient.  <br/>
+<img src="https://i.imgur.com/LDYVjzP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+The governing second-order equation of motion is converted into a first-order system and solved numerically using MATLAB’s ode45 solver. The system is initialized with a vertical landing velocity representative of touchdown conditions. Each simulation produces time histories of displacement, velocity, and force transmitted through the landing gear. <br/>
+<img src="https://i.imgur.com/QYUx3bz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+ A comprehensive sensitivity analysis is performed by sweeping spring stiffness and damping ratio values across a broad design space. For each parameter combination, the system response is simulated and evaluated using automated post-processing. Settling time is calculated using a ±5% displacement criterion relative to peak response. The results are visualized as a surface plot, allowing rapid identification of trends and regions of improved performance.
+<br />
+ <br />
+<img src="https://i.imgur.com/wIqZxB7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+ <br />
+ While increasing spring stiffness generally reduces settling time, excessively stiff systems result in unrealistic displacement behavior and unacceptably high impact forces. To avoid non-physical designs, maximum displacement constraints are introduced based on typical small-aircraft landing gear behavior. These constraints limit the parameter space to physically reasonable solutions.
+<br/>
+<br />
+<img src="https://i.imgur.com/vGQH8XZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Wait for process to complete (may take some time):  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+To further understand system behavior, displacement responses are generated for a range of damping ratios while holding spring stiffness constant. This analysis highlights the trade-off between underdamped oscillations and overdamped slow response, showing that moderate damping provides the fastest practical settling.  <br/>
+ <br />
+<img src="https://i.imgur.com/XV0QQAV.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Sanitization complete:  <br/>
