@@ -15,9 +15,20 @@ This project presents a parametric and sensitivity analysis of aircraft landing 
 <h2>Program walk-through:</h2>
 
 <p align="center">
-This project applies dynamic modeling and numerical simulation to analyze and design aerospace mechanical systems using MATLAB. Two primary problems are addressed: optimizing the shock absorption performance of an aircraft landing gear system during touchdown, and evaluating vibration amplification in an aircraft wing caused by engine imbalance. Both analyses are approached as design problems with no single correct solution, emphasizing sensitivity analysis and engineering trade-offs. <br/>
- <br />
-The aircraft landing gear is modeled as an equivalent single-degree-of-freedom mass–spring–damper system. While real landing gear assemblies are mechanically complex, parallel shock absorbers allow the system to be reduced to a single effective stiffness and damping coefficient for vertical dynamics. This simplified model captures the dominant behavior during landing while remaining computationally efficient.  <br/>
+I wanted to explore how engineers balance competing priorities—such as minimizing weight while maximizing structural stiffness—to solve real-world aerospace problems. The following analysis addresses two distinct dynamic systems critical to aircraft performance and safety:
+
+* Problem 1: Landing Gear Design Optimization: The objective is to design a shock absorber for a home-built aircraft to minimize the settling time—the time it takes for oscillations to cease after the initial impact of landing. This is critical for preventing structural damage and ensuring pilot safety.
+  
+* Problem 2: Wing Vibration & Resonance Control: This problem focuses on a jet liner wing subject to mass imbalance from a turbofan engine. The goal is to determine the necessary wing stiffness to keep vibration amplification within strict safety limits ($A \le 0.05$) during various flight phases.
+
+ <h3>Problem 1. Aircraft Landing Gear Design Optimization:</h3>
+
+For a 1,200 kg aircraft landing at a vertical speed of $0.56\text{ m/s}$, the gear must dissipate energy as quickly as possible without exceeding structural force limits. <br/>
+<p><strong>Mathematical Modeling</strong></p>
+The system is modeled as a single degree-of-freedom (SDOF) mass-spring-damper system. The second-order equation of motion is derived from Newton's Second Law:
+
+$$m\ddot{x} + c\dot{x} + kx = 0$$
+
 <img src="https://i.imgur.com/LDYVjzP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
@@ -48,13 +59,3 @@ Sanitization complete:  <br/>
 Observe the wiped disk:  <br/>
 <img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
