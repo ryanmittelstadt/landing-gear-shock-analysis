@@ -27,7 +27,11 @@ For a 1,200 kg aircraft landing at a vertical speed of $0.56\text{ m/s}$, the ge
 <p><strong>Mathematical Modeling</strong></p>
 The system is modeled as a single degree-of-freedom (SDOF) mass-spring-damper system. The second-order equation of motion is derived from Newton's Second Law:
 
-$$m\ddot{x} + c\dot{x} + kx = 0$$
+<div align="center">
+
+$$\large m\ddot{x} + c\dot{x} + kx = 0$$
+
+</div>
 
 <img src="https://i.imgur.com/LDYVjzP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
