@@ -15,7 +15,7 @@ This project presents a parametric and sensitivity analysis of aircraft landing 
 <h2>Program walk-through:</h2>
 
 <p align="center">
-Launch the utility: <br/>
+This project applies dynamic modeling and numerical simulation to analyze and design aerospace mechanical systems using MATLAB. Two primary problems are addressed: optimizing the shock absorption performance of an aircraft landing gear system during touchdown, and evaluating vibration amplification in an aircraft wing caused by engine imbalance. Both analyses are approached as design problems with no single correct solution, emphasizing sensitivity analysis and engineering trade-offs. <br/>
 <img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
