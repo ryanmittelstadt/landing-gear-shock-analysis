@@ -2,16 +2,6 @@
 This project presents a parametric and sensitivity analysis of aircraft landing gear and structural vibration dynamics using MATLAB simulations. Landing impact dynamics are modeled to investigate the influence of stiffness and damping on settling time and maximum displacement. Wing vibration amplification due to engine imbalance is also analyzed over varying operating conditions. The work demonstrates design-oriented approaches to aerospace vibration and dynamics problems.
 <br />
 
-
-<h2>Languages and Utilities Used</h2>
-
-- <b>MATLAB</b> 
-- <b>Diskpart</b>
-
-<h2>Environments Used </h2>
-
-- <b>Windows 10</b> (21H2)
-
 <h2>Program walk-through:</h2>
 
 <p align="left">
